@@ -33,6 +33,7 @@
                  getmean = getmean)
     }
 
+
 ##The following function calculates the mean of the special "vector"
 ##created with the above function. However, it first checks to see if the
 ##mean has already been calculated. If so, it `get`s the mean from the
@@ -67,15 +68,41 @@
 ###################################################################################################
 
 
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
-
-makeCacheMatrix <- function(x = matrix()) {
-}
-
-
+##### Put comments here that give an overall description of what your
+##### functions do
+###
+##### Write a short comment describing this function
+###
+#####    makeVector <- function(x = numeric()) {
+###makeCacheMatrix <- function(x = matrix()) {
+#####            m <- NULL
+###		i <- NULL
+#####            set <- function(y) {
+###           set <- function(y) {
+#####                    x <<- y
+###
+###                    x <<- y
+#####                    m <<- NULL
+###                    i <<- NULL
+#####            }
+###            }
+#####            get <- function() x
+###            get <- function() x
+#####            setmean <- function(mean) m <<- mean
+######################inverse below might need to be changed to solve
+###            setInverse <- function(inverse) m <<- inverse
+#####            getmean <- function() m
+###            getInverse <- function() m
+#####            list(set = set, get = get,
+###            list(set = set, get = get,
+#####                 setmean = setmean,
+###                 setInverse = setInverse,
+#####                 getmean = getmean)
+###                 getInverse = getInverse)
+###
+#####    }
+###}
+#####
 
     makeVector <- function(x = numeric()) {
             m <- NULL
@@ -91,8 +118,20 @@ makeCacheMatrix <- function(x = matrix()) {
                  getmean = getmean)
     }
 
-
-
+    makeVector <- function(x = numeric()) {
+makeCacheMatrix <- function(x = matrix()) {
+            m <- NULL
+            set <- function(y) {
+                    x <<- y
+                    m <<- NULL
+            }
+            get <- function() x
+            setsolve <- function(solve) m <<- solve
+            getsolve <- function() m
+            list(set = set, get = get,
+                 setsolve = setsolve,
+                 getsolve = getsolve)
+    }
 
 
 
@@ -104,6 +143,31 @@ cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
 }
 
+    cachemean <- function(x, ...) {
+            m <- x$getmean()
+            if(!is.null(m)) {
+                    message("getting cached data")
+                    return(m)
+            }
+            data <- x$get()
+            m <- mean(data, ...)
+            x$setmean(m)
+            m
+    }
+
+
+###    cachesolve <- function(x, ...) {
+cacheSolve <- function(x, ...) {
+            m <- x$getsolve()
+            if(!is.null(m)) {
+                    message("getting cached data")
+                    return(m)
+            }
+            data <- x$get()
+            m <- solve(data, ...)
+            x$setsolve(m)
+            m
+    }
 
 
 ###################################################################################################
