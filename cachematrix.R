@@ -131,19 +131,50 @@ cacheSolve <- function(x, ...) {
 ##The Code below is intended to aid in testing.
 
 ##TestProgram2
-testprogram<-function(dimOfSqureMatrix=1000,printmatrix=FALSE){
+##When printing matrics times are not printed
+## Note the random matrix may not be invertable
+testprogram<-function(dimOfSqureMatrix=1000,printmatrics=FALSE){
 set.seed(0)
 sq<-dimOfSqureMatrix^2
 vec<-rnorm(sq)
 matx<-matrix(vec,nrow=dimOfSqureMatrix,ncol = dimOfSqureMatrix)
+if(printmatrics){
+        print("matx")
+        print(matx)
+        print("")
+}
+
 ##print(matx)
 matxCached<-NULL
+if(printmatrics){
+        print(matxCached)
+        print(matxCached)
+        print("")
+}
+
+
+
 matxCached<-makeCacheMatrix(matx)
 atime<-Sys.time()
 inverseMatrix<-cacheSolve(matxCached)
+
+if(printmatrics){
+        print("inverseMatrix")
+        print(inverseMatrix)
+        print(" ")
+}
+
 btime<-Sys.time()
 inverseMatrix<-cacheSolve(matxCached)
 ctime<-Sys.time()
+
+if(printmatrics){
+print("inverseMatrix")
+print(inverseMatrix)
+print(" ")
+}
+
+if(!printmatrics){
 print("Before first cacheSolve")
 print(atime)
 print(" ")
@@ -152,12 +183,14 @@ print(btime)
 print(" ")
 print("After second cacheSolve")
 print(ctime)
+}
 
 
 
 #print(inverseMatrix%*%matx)
 }
 
+testprogram(4,printmatrics=TRUE)
 testprogram(1000)
 
 
