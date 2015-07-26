@@ -1,4 +1,5 @@
 ## The following program is derived from the git hub account
+
 ## https://github.com/rdpeng/ProgrammingAssignment2
 ## From the README.md file.
 
@@ -117,8 +118,7 @@
                  setmean = setmean,
                  getmean = getmean)
     }
-
-    makeVector <- function(x = numeric()) {
+## makeVector <- function(x = numeric()) {
 makeCacheMatrix <- function(x = matrix()) {
             m <- NULL
             set <- function(y) {
@@ -139,9 +139,9 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## Write a short comment describing this function
 
-cacheSolve <- function(x, ...) {
+##cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-}
+##}
 
     cachemean <- function(x, ...) {
             m <- x$getmean()
